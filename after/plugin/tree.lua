@@ -26,14 +26,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 require("nvim-tree").setup({
-    open_on_setup = true,
-    open_on_setup_file = true,
     sort_by = "case_sensitive",
     view = {
         width = width,
         --height = height,
         float = {
-            enable = true,
+            enable = false,
             open_win_config = {
                 relative = "editor",
                 width = width,

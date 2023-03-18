@@ -22,8 +22,7 @@ return require('packer').startup(function(use)
             {'saadparwaiz1/cmp_luasnip'},
             {'hrsh7th/cmp-nvim-lsp'},
             {'hrsh7th/cmp-nvim-lua'},
-            {'L3MON4D3/LuaSnip'},
-            {'rafamadriz/friendly-snippets'},
+            {'L3MON4D3/LuaSnip'}
         }
     }
     use {
@@ -43,14 +42,6 @@ return require('packer').startup(function(use)
         tag = 'nightly'
     }
     use { 'feline-nvim/feline.nvim' }
-    use {
-        "folke/which-key.nvim",
-        config = function()
-            vim.o.timeout = true
-            vim.o.timeoutlen = 0
-            require("which-key").setup {}
-        end
-    }
     use {
         'saecki/crates.nvim',
         tag = 'v0.3.0',
@@ -72,4 +63,13 @@ return require('packer').startup(function(use)
             "MunifTanjim/nui.nvim",
         }
     })
+    use 'mfussenegger/nvim-dap'
+    use 'nvim-telescope/telescope-dap.nvim'
+    use { "mxsdev/nvim-dap-vscode-js", requires = {"mfussenegger/nvim-dap"} }
+    use {
+        "microsoft/vscode-js-debug",
+        opt = true,
+        run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
+    }
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 end)

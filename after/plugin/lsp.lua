@@ -3,7 +3,9 @@ lsp.preset('recommended')
 lsp.ensure_installed({
     'rust_analyzer',
     'denols',
-    'tsserver'
+    'tsserver',
+    'tailwindcss',
+    'html'
 })
 lsp.skip_server_setup({ 'rust_analyzer' })
 local cmp = require('cmp')
@@ -65,11 +67,41 @@ else
     })
 end
 
+lsp.configure('html', {
+    filetypes = {
+        "html",
+        "rust"
+    }
+})
+
 local rust_lsp = lsp.build_options('rust_analyzer', {
     single_file_support = false,
 })
 
 require('rust-tools').setup({ server = rust_lsp })
+lsp.configure('tailwindcss', {
+  filetypes = {
+    "css",
+    "scss",
+    "sass",
+    "postcss",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "svelte",
+    "vue",
+    "rust",
+  },
+  init_options = {
+    userLanguages = {
+      rust = "html",
+    },
+  },
+  root_dir = require 'lspconfig'.util.root_pattern('tailwind.config.js', 'tailwind.config.ts', 'postcss.config.js',
+    'postcss.config.ts', 'windi.config.ts'),
+})
 
 local null_ls = require('null-ls')
 

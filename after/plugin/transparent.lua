@@ -1,8 +1,16 @@
 require("transparent").setup({
     enable = true, -- boolean: enable transparent
     extra_groups = { -- table/string: additional groups that should be cleared
-        all
-        -- In particular, when you set it to 'all', that means all available groups
+        "all",
+        "DapUINormal",
+        "DapUIPlayPause",
+        "DapUIRestart",
+        "DapUIStop",
+        "DapUIUnavailable",
+        "DapUIStepOver",
+        "DapUIStepInto",
+        "DapUIStepBack",
+        "DapUIStepOut",        -- In particular, when you set it to 'all', that means all available groups
         -- example of akinsho/nvim-bufferline.lua
         --"BufferLineTabClose",
         --"BufferlineBufferSelected",

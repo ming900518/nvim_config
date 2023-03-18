@@ -92,7 +92,7 @@ local c = {
 		provider = {
 			name = "file_info",
 			opts = {
-				type = "relative-short",
+			    type = "relative",
 			},
 		},
 		hl = {
@@ -191,7 +191,7 @@ local left = {
 	c.vim_mode,
 	c.gitBranch,
 	c.gitDiffAdded,
-  c.gitDiffRemoved,
+    c.gitDiffRemoved,
 	c.gitDiffChanged,
 	c.separator,
 }
@@ -201,6 +201,7 @@ local middle = {
 	c.diagnostic_warnings,
 	c.diagnostic_info,
 	c.diagnostic_hints,
+    c.fileinfo
 }
 
 local right = {
