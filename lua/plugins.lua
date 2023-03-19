@@ -1,5 +1,4 @@
 vim.cmd [[packadd packer.nvim]]
-
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     use {
@@ -33,7 +32,7 @@ return require('packer').startup(function(use)
         require("toggleterm").setup()
     end}
     use { "williamboman/mason.nvim" }
-    use { "xiyaowong/nvim-transparent" }
+    use { "xiyaowong/transparent.nvim" }
     use {
         'nvim-tree/nvim-tree.lua',
         requires = {

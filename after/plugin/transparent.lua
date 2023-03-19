@@ -1,5 +1,10 @@
 require("transparent").setup({
-    enable = true, -- boolean: enable transparent
+    groups = { -- table: default groups
+        'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+        'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+        'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+        'SignColumn', 'CursorLineNr', 'EndOfBuffer',
+    },
     extra_groups = { -- table/string: additional groups that should be cleared
         "all",
         "DapUINormal",
@@ -19,6 +24,6 @@ require("transparent").setup({
         --"BufferLineSeparator",
         --"BufferLineIndicatorSelected",
     },
-    exclude = {
+    exclude_groups = {
     }, -- table: groups you don't want to clear
 })

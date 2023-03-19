@@ -2,7 +2,6 @@ local lsp = require('lsp-zero')
 lsp.preset('recommended')
 lsp.ensure_installed({
     'rust_analyzer',
-    'denols',
     'tsserver',
     'tailwindcss',
     'html'
@@ -34,38 +33,14 @@ end
 
 local root_pattern = require('lspconfig.util').root_pattern
 
-if root_pattern("package.json", "./package.json") then
-    lsp.skip_server_setup('denols')
-    lsp.configure('tsserver', {
-        on_attach = function(client)
-            client.server_capabilities.documentFormattingProvider = false
-            client.server_capabilities.documentRangeFormattingProvider = false
-        end,
-        root_dir = root_pattern("package.json", "./package.json"),
-        single_file_support = false
-    })
-else
-    lsp.configure('denols', {
-        flags = {
-            debounce_text_changes = 150,
-        },
-        filetypes = {
-            'javascript',
-            'javascriptreact',
-            'javascript.jsx',
-            'typescript',
-            'typescriptreact',
-            'typescript.tsx',
-            'markdown',
-        },
-        single_file_support = false,
-        init_options = {
-            enable = true,
-            lint = true,
-            unstable = true
-        },
-    })
-end
+lsp.configure('tsserver', {
+    on_attach = function(client)
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+    end,
+    root_dir = root_pattern("package.json", "./package.json"),
+    single_file_support = false
+})
 
 lsp.configure('html', {
     filetypes = {
