@@ -11,7 +11,7 @@ end
 
 local gwidth = vim.api.nvim_list_uis()[1].width
 local gheight = vim.api.nvim_list_uis()[1].height
-local width = 60
+local width = 30
 local height = 20
 
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -54,9 +54,6 @@ require("nvim-tree").setup({
     filters = {
         dotfiles = false,
         custom = { "^.git$", ".DS_Store" }
-    },
-    ignore_ft_on_setup = {
-        "gitcommit",
     },
     git = {
         enable = true,

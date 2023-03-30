@@ -5,10 +5,6 @@ vim.g.mapleader = ' '
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- set termguicolors to enable highlight groups
-vim.opt.termguicolors = true
-
--- OR setup with some options
 vim.cmd('set clipboard+=unnamedplus')
 vim.cmd('autocmd Colorscheme * highlight TelescopeNormal guibg=#1e1e1e guifg=#9da5b3')
 vim.cmd('autocmd Colorscheme * highlight TelescopeBorder guibg=#1e1e1e guifg=#9da5b3')
@@ -18,8 +14,9 @@ vim.cmd('autocmd Colorscheme * highlight NoicePopupmenu guibg=#1e1e1e guifg=#9da
 vim.cmd('autocmd Colorscheme * highlight NoiceConfirm guibg=#1e1e1e guifg=#9da5b3')
 vim.cmd('autocmd Colorscheme * highlight NoiceMini guibg=#1e1e1e guifg=#9da5b3')
 vim.cmd('autocmd Colorscheme * highlight LineNr guibg=#fcd3db guifg=#9da5b3')
+vim.opt.termguicolors = true
+vim.cmd.colorscheme 'sonokai'
 
-vim.cmd('colorscheme xcodedarkhc')
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "*" },
     command = [[:NvimTreeClose]]

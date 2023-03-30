@@ -5,9 +5,9 @@ return require('packer').startup(function(use)
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
-    use('arzg/vim-colors-xcode')
     use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
     use('nvim-treesitter/playground')
+    use('sainnhe/sonokai')
     use('mbbill/undotree')
     use {
         'VonHeikemen/lsp-zero.nvim',
@@ -56,19 +56,20 @@ return require('packer').startup(function(use)
         "folke/noice.nvim",
         config = function()
             require("noice").setup({
+		config = {
+			lsp = {
+				hover = {
+					enabled = false
+				},
+				signature = {
+					enabled = false
+				}
+			}				
+		}
             })
         end,
         requires = {
             "MunifTanjim/nui.nvim",
         }
     })
-    use 'mfussenegger/nvim-dap'
-    use 'nvim-telescope/telescope-dap.nvim'
-    use { "mxsdev/nvim-dap-vscode-js", requires = {"mfussenegger/nvim-dap"} }
-    use {
-        "microsoft/vscode-js-debug",
-        opt = true,
-        run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
-    }
-    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 end)
