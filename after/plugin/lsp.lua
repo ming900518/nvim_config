@@ -4,9 +4,8 @@ lsp.ensure_installed({
     'rust_analyzer',
     'tsserver',
     'tailwindcss',
-    'html'
+    'html',
 })
-lsp.skip_server_setup({ 'rust_analyzer' })
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -45,37 +44,31 @@ lsp.configure('tsserver', {
 lsp.configure('html', {
     filetypes = {
         "html",
-        "rust"
     }
 })
 
-local rust_lsp = lsp.build_options('rust_analyzer', {
-    single_file_support = false,
-})
-
-require('rust-tools').setup({ server = rust_lsp })
 lsp.configure('tailwindcss', {
-  filetypes = {
-    "css",
-    "scss",
-    "sass",
-    "postcss",
-    "html",
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "svelte",
-    "vue",
-    "rust",
-  },
-  init_options = {
-    userLanguages = {
-      rust = "html",
+    filetypes = {
+        "css",
+        "scss",
+        "sass",
+        "postcss",
+        "html",
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "svelte",
+        "vue",
+        "rust",
     },
-  },
-  root_dir = require 'lspconfig'.util.root_pattern('tailwind.config.js', 'tailwind.config.ts', 'postcss.config.js',
-    'postcss.config.ts', 'windi.config.ts'),
+    init_options = {
+        userLanguages = {
+            rust = "html",
+        },
+    },
+    root_dir = require 'lspconfig'.util.root_pattern('tailwind.config.js', 'tailwind.config.ts', 'postcss.config.js',
+        'postcss.config.ts', 'windi.config.ts'),
 })
 
 local null_ls = require('null-ls')
@@ -99,13 +92,15 @@ local null_opts = lsp.build_options('null-ls', {
     end
 })
 
-
-
 null_ls.setup({
     on_attach = null_opts.on_attach,
     sources = {
-        null_ls.builtins.formatting.deno_fmt,
         null_ls.builtins.formatting.rustfmt,
+        null_ls.builtins.formatting.prettierd.with({
+            env = {
+                PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/.config/nvim/after/plugin/prettierd.json"),
+            },
+        })
     }
 })
 

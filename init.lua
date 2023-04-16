@@ -13,7 +13,9 @@ vim.cmd('autocmd Colorscheme * highlight NoicePopup guibg=#1e1e1e guifg=#9da5b3'
 vim.cmd('autocmd Colorscheme * highlight NoicePopupmenu guibg=#1e1e1e guifg=#9da5b3')
 vim.cmd('autocmd Colorscheme * highlight NoiceConfirm guibg=#1e1e1e guifg=#9da5b3')
 vim.cmd('autocmd Colorscheme * highlight NoiceMini guibg=#1e1e1e guifg=#9da5b3')
-vim.cmd('autocmd Colorscheme * highlight LineNr guibg=#fcd3db guifg=#9da5b3')
+vim.cmd('autocmd Colorscheme * highlight LineNr guifg=#fcd3db')
+vim.cmd('autocmd Colorscheme * highlight WinBar guibg=NONE')
+vim.cmd('autocmd Colorscheme * highlight WinBarNC guibg=NONE')
 vim.opt.termguicolors = true
 vim.cmd.colorscheme 'sonokai'
 
