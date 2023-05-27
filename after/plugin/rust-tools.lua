@@ -1,9 +1,14 @@
-local extension_path = '/Users/chisakikirino/.config/nvim/codelldb/'
+local extension_path = '/home/chisakikirino/.config/nvim/codelldb/'
 local codelldb_path = extension_path .. 'adapter/codelldb'
-local liblldb_path = extension_path .. 'lldb/lib/liblldb.dylib'
+local liblldb_path = extension_path .. 'lldb/lib/liblldb.so'
 local rt = require("rust-tools")
 local rtdap = require('rust-tools.dap')
 rt.setup({
+    tools = {
+        inlay_hints = {
+            auto = false
+        }
+    },
     server = {
         on_attach = function(_, bufnr)
             -- Hover actions
@@ -25,7 +30,3 @@ rt.setup({
         adapter = rtdap.get_codelldb_adapter(codelldb_path, liblldb_path)
     },
 })
-
-
-
-rt.inlay_hints.enable()

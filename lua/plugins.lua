@@ -36,9 +36,6 @@ return require('packer').startup(function(use)
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons"
     }
-    use { "akinsho/toggleterm.nvim", tag = '*', config = function()
-        require("toggleterm").setup()
-    end }
     use { "williamboman/mason.nvim" }
     use { "xiyaowong/transparent.nvim" }
     use {
@@ -59,7 +56,6 @@ return require('packer').startup(function(use)
     }
     use { 'simrat39/rust-tools.nvim' }
     use { 'jose-elias-alvarez/null-ls.nvim' }
-    --use {'romgrk/barbar.nvim', requires = 'nvim-web-devicons'}
     use({
         "folke/noice.nvim",
         config = function()
@@ -83,4 +79,5 @@ return require('packer').startup(function(use)
     use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
     use "nvim-telescope/telescope-dap.nvim"
     use "nvim-lua/plenary.nvim"
+    use { "lvimuser/lsp-inlayhints.nvim", branch = "anticonceal" }
 end)

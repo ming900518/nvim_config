@@ -8,7 +8,7 @@ transparent.setup({
         'SignColumn', 'CursorLineNr', 'EndOfBuffer', 'WinBar', 'WinBarNC'
     },
     extra_groups = {
-       -- 'NvimTreeNormal', 'NvimTreeEndOfBuffer'
+       'NvimTreeNormal', 'NvimTreeEndOfBuffer', 'LspInlayHint'
     },
     exclude_groups = {
     }}

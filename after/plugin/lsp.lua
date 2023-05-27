@@ -5,6 +5,7 @@ lsp.ensure_installed({
     'tsserver',
     'tailwindcss',
     'html',
+    'hls'
 })
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -16,11 +17,11 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 })
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    {
-        update_in_insert = true,
-        virtual_text = true
-    }
+vim.lsp.diagnostic.on_publish_diagnostics,
+{
+    update_in_insert = true,
+    virtual_text = true
+}
 )
 
 -- local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
@@ -32,11 +33,39 @@ end
 
 local root_pattern = require('lspconfig.util').root_pattern
 
+lsp.configure('hls', {})
+
 lsp.configure('tsserver', {
     on_attach = function(client)
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
     end,
+    settings = {
+        typescript = {
+            inlayHints = {
+                includeInlayParameterNameHints = 'all',
+                includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+            }
+        },
+        javascript = {
+            inlayHints = {
+                includeInlayParameterNameHints = 'all',
+                includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+            }
+        }
+    },
     root_dir = root_pattern("package.json", "./package.json"),
     single_file_support = false
 })
@@ -68,7 +97,7 @@ lsp.configure('tailwindcss', {
         },
     },
     root_dir = require 'lspconfig'.util.root_pattern('tailwind.config.js', 'tailwind.config.ts', 'postcss.config.js',
-        'postcss.config.ts', 'windi.config.ts'),
+    'postcss.config.ts', 'windi.config.ts'),
 })
 
 local null_ls = require('null-ls')
@@ -112,5 +141,19 @@ lsp.setup_nvim_cmp({
 })
 
 lsp.setup()
+require("lsp-inlayhints").setup()
+vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = "LspAttach_inlayhints",
+  callback = function(args)
+    if not (args.data and args.data.client_id) then
+      return
+    end
+
+    local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    require("lsp-inlayhints").on_attach(client, bufnr)
+  end,
+})
 
 vim.keymap.set("n", "<leader>fm", function() vim.lsp.buf.format({ async = true }) end)

@@ -30,42 +30,11 @@ require("dapui").setup({
     windows = { indent = 1 },
 })
 
-dap.adapters["pwa-node"] = {
-    type = "server",
-    host = "localhost",
-    port = "${port}",
-    executable = {
-        command = "node",
-        args = { "/Users/chisakikirino/.local/share/nvim/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
-            "${port}" },
-    }
-}
-
-dap.configurations.javascript = {
-    {
-        type = "pwa-node",
-        request = "attach",
-        name = "Attach",
-        processId = require 'dap.utils'.pick_process,
-        cwd = "${workspaceFolder}",
-    }
-}
-
-dap.configurations.typescript = {
-    {
-        type = "pwa-node",
-        request = "attach",
-        name = "Attach",
-        processId = require 'dap.utils'.pick_process,
-        cwd = "${workspaceFolder}",
-    }
-}
-
 dap.adapters.codelldb = {
   type = 'server',
   port = "${port}",
   executable = {
-    command = '/Users/chisakikirino/.config/nvim/codelldb/adapter/codelldb',
+    command = '/home/chisakikirino/.config/nvim/codelldb/adapter/codelldb',
     args = {"--port", "${port}"},
   }
 }
