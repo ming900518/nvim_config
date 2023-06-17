@@ -17,7 +17,8 @@ vim.cmd('autocmd Colorscheme * highlight LineNr guifg=#fcd3db')
 vim.cmd('autocmd Colorscheme * highlight WinBar guibg=NONE')
 vim.cmd('autocmd Colorscheme * highlight WinBarNC guibg=NONE')
 vim.opt.termguicolors = true
-vim.cmd.colorscheme 'sonokai'
+-- vim.cmd.colorscheme 'sonokai'
+vim.cmd.colorscheme 'pink-moon'
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "*" },

@@ -86,4 +86,5 @@ return require('packer').startup(function(use)
             require('git').setup()
         end
     }
+    use "sts10/vim-pink-moon"
 end)
