@@ -24,4 +24,3 @@ vim.opt.colorcolumn = "0"
 vim.opt.cmdheight = 0
 vim.opt.laststatus = 3
 -- vim.opt.relativenumber = true
-

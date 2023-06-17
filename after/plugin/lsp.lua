@@ -5,7 +5,8 @@ lsp.ensure_installed({
     'tsserver',
     'tailwindcss',
     'html',
-    'hls'
+    'hls',
+    'jdtls',
 })
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -157,3 +158,4 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.keymap.set("n", "<leader>fm", function() vim.lsp.buf.format({ async = true }) end)
+vim.keymap.set("n", "<leader>hh", function() require('lsp-inlayhints').toggle() end)

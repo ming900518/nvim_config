@@ -19,9 +19,16 @@ rt.setup({
         cmd = { "rustup", "run", "stable", "rust-analyzer" },
         settings = {
             ["rust-analyzer"] = {
+                -- localDocs = true,
                 check = {
                     command = "clippy",
                     extraArgs = { "--all", "--", "-W", "clippy::all" }
+                },
+                inlayHints = {
+                    lifetimeElisionHints = {
+                        enable = "always",
+                    },
+                    maxLength = 25565
                 }
             }
         },
