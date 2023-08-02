@@ -16,6 +16,7 @@ rt.setup({
             -- Code action groups
             vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
         end,
+        -- cmd = { "rustup", "run", "nightly", "rust-analyzer" },
         cmd = { "rustup", "run", "stable", "rust-analyzer" },
         settings = {
             ["rust-analyzer"] = {
@@ -29,9 +30,12 @@ rt.setup({
                         enable = "always",
                     },
                     maxLength = 25565
-                }
-            }
-        },
+                },
+                cargo = {
+                    allFeatures = true,
+                },
+            },
+        }
     },
     dap = {
         adapter = rtdap.get_codelldb_adapter(codelldb_path, liblldb_path)

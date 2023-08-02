@@ -115,10 +115,11 @@ _G.packer_plugins = {
     path = "/home/chisakikirino/.local/share/nvim/site/pack/packer/start/feline.nvim",
     url = "https://github.com/feline-nvim/feline.nvim"
   },
-  ["lsp-inlayhints.nvim"] = {
+  ["git.nvim"] = {
+    config = { "\27LJ\2\n1\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\bgit\frequire\0" },
     loaded = true,
-    path = "/home/chisakikirino/.local/share/nvim/site/pack/packer/start/lsp-inlayhints.nvim",
-    url = "https://github.com/lvimuser/lsp-inlayhints.nvim"
+    path = "/home/chisakikirino/.local/share/nvim/site/pack/packer/start/git.nvim",
+    url = "https://github.com/dinhhuy258/git.nvim"
   },
   ["lsp-zero.nvim"] = {
     loaded = true,
@@ -176,6 +177,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/chisakikirino/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-metals"] = {
+    loaded = true,
+    path = "/home/chisakikirino/.local/share/nvim/site/pack/packer/start/nvim-metals",
+    url = "https://github.com/scalameta/nvim-metals"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
@@ -241,6 +247,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/chisakikirino/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
+  },
+  ["vim-pink-moon"] = {
+    loaded = true,
+    path = "/home/chisakikirino/.local/share/nvim/site/pack/packer/start/vim-pink-moon",
+    url = "https://github.com/sts10/vim-pink-moon"
   }
 }
 
@@ -249,6 +260,10 @@ time([[Defining packer_plugins]], false)
 time([[Config for nvim-dap-virtual-text]], true)
 try_loadstring("\27LJ\2\n‹\1\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\3\21show_stop_reason\1\18virt_text_pos\beol highlight_changed_variables\2\nsetup\26nvim-dap-virtual-text\frequire\0", "config", "nvim-dap-virtual-text")
 time([[Config for nvim-dap-virtual-text]], false)
+-- Config for: git.nvim
+time([[Config for git.nvim]], true)
+try_loadstring("\27LJ\2\n1\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\bgit\frequire\0", "config", "git.nvim")
+time([[Config for git.nvim]], false)
 -- Config for: noice.nvim
 time([[Config for noice.nvim]], true)
 try_loadstring("\27LJ\2\n“\1\0\0\6\0\f\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\n\0005\3\b\0005\4\4\0005\5\3\0=\5\5\0045\5\6\0=\5\a\4=\4\t\3=\3\v\2B\0\2\1K\0\1\0\vconfig\1\0\0\blsp\1\0\0\14signature\1\0\1\fenabled\1\nhover\1\0\0\1\0\1\fenabled\1\nsetup\nnoice\frequire\0", "config", "noice.nvim")

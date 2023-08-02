@@ -6,6 +6,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 vim.cmd('set clipboard+=unnamedplus')
+vim.cmd('set encoding=utf-8')
 vim.cmd('autocmd Colorscheme * highlight TelescopeNormal guibg=#1e1e1e guifg=#9da5b3')
 vim.cmd('autocmd Colorscheme * highlight TelescopeBorder guibg=#1e1e1e guifg=#9da5b3')
 vim.cmd('autocmd Colorscheme * highlight NoiceCmdlinePopup guibg=#1e1e1e guifg=#9da5b3')
@@ -16,6 +17,7 @@ vim.cmd('autocmd Colorscheme * highlight NoiceMini guibg=#1e1e1e guifg=#9da5b3')
 vim.cmd('autocmd Colorscheme * highlight LineNr guifg=#fcd3db')
 vim.cmd('autocmd Colorscheme * highlight WinBar guibg=NONE')
 vim.cmd('autocmd Colorscheme * highlight WinBarNC guibg=NONE')
+vim.cmd('autocmd Colorscheme * highlight LspInlayHint guifg=#bc9ea4 gui=italic')
 vim.opt.termguicolors = true
 -- vim.cmd.colorscheme 'sonokai'
 vim.cmd.colorscheme 'pink-moon'

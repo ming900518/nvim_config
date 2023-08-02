@@ -55,6 +55,7 @@ return require('packer').startup(function(use)
         end,
     }
     use { 'simrat39/rust-tools.nvim' }
+    use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
     use { 'jose-elias-alvarez/null-ls.nvim' }
     use({
         "folke/noice.nvim",
@@ -79,7 +80,6 @@ return require('packer').startup(function(use)
     use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
     use "nvim-telescope/telescope-dap.nvim"
     use "nvim-lua/plenary.nvim"
-    use { "lvimuser/lsp-inlayhints.nvim", branch = "anticonceal" }
     use {
         'dinhhuy258/git.nvim',
         config = function()
