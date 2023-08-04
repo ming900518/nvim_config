@@ -1,10 +1,6 @@
 vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
-    use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        requires = { { 'nvim-lua/plenary.nvim' } }
-    }
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use {'theHamsta/nvim-dap-virtual-text', config = function ()
         require("nvim-dap-virtual-text").setup {
@@ -15,7 +11,6 @@ return require('packer').startup(function(use)
         }
     end}
     use('nvim-treesitter/playground')
-    use('sainnhe/sonokai')
     use('mbbill/undotree')
     use {
         'VonHeikemen/lsp-zero.nvim',
@@ -57,29 +52,7 @@ return require('packer').startup(function(use)
     use { 'simrat39/rust-tools.nvim' }
     use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
     use { 'jose-elias-alvarez/null-ls.nvim' }
-    use({
-        "folke/noice.nvim",
-        config = function()
-            require("noice").setup({
-                config = {
-                    lsp = {
-                        hover = {
-                            enabled = false
-                        },
-                        signature = {
-                            enabled = false
-                        }
-                    }
-                }
-            })
-        end,
-        requires = {
-            "MunifTanjim/nui.nvim",
-        }
-    })
     use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
-    use "nvim-telescope/telescope-dap.nvim"
-    use "nvim-lua/plenary.nvim"
     use {
         'dinhhuy258/git.nvim',
         config = function()

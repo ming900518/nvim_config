@@ -6,7 +6,6 @@ lsp.ensure_installed({
     'tailwindcss',
     'html',
     'jdtls',
-    'bufls'
 })
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
