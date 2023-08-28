@@ -140,6 +140,8 @@ lsp.setup_nvim_cmp({
 
 lsp.setup()
 vim.keymap.set("n", "<leader>fm", function() vim.lsp.buf.format({ async = true }) end)
-vim.keymap.set("n", "<leader>hh", function() 
-    vim.lsp.inlay_hint(0)
-end)
+vim.keymap.set("n", "<leader>hh", function() vim.lsp.inlay_hint(0) end)
+vim.keymap.set("n", "<leader>hv", function() vim.lsp.buf.hover() end)
+vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end)
+vim.keymap.set("n", "<leader>rf", function() vim.lsp.buf.references() end)
+vim.keymap.set("n", "<leader>td", function() vim.lsp.buf.type_definition() end)
