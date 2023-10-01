@@ -60,4 +60,6 @@ return require('packer').startup(function(use)
         end
     }
     use "sts10/vim-pink-moon"
+    use "ThePrimeagen/lsp-debug-tools.nvim"
+    use "ziglang/zig.vim"
 end)

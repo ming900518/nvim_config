@@ -4,8 +4,7 @@ lsp.ensure_installed({
     'rust_analyzer',
     'tsserver',
     'tailwindcss',
-    'html',
-    'jdtls',
+    'html'
 })
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -73,6 +72,8 @@ lsp.configure('html', {
         "html",
     }
 })
+
+lsp.configure('zls', {})
 
 lsp.configure('tailwindcss', {
     filetypes = {

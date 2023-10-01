@@ -10,7 +10,8 @@ rt.setup({
         }
     },
     server = {
-        on_attach = function(_, bufnr)
+        on_attach = function(client, _bufnr)
+            client.server_capabilities.semanticTokensProvider = nil
             -- Hover actions
             -- vim.keymap.set("n", "<Leader>h", rt.hover_actions.hover_actions, { buffer = bufnr })
             -- Code action groups
@@ -34,6 +35,14 @@ rt.setup({
                 cargo = {
                     allFeatures = true,
                 },
+                procMacro = {
+                    ignored = {
+                        leptos_macro = {
+                            "server",
+                            "component",
+                        },
+                    },
+                }
             },
         }
     },
