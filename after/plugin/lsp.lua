@@ -1,26 +1,32 @@
 local lsp = require('lsp-zero')
-lsp.preset('recommended')
-lsp.ensure_installed({
-    'rust_analyzer',
-    'tsserver',
-    'tailwindcss',
-    'html'
+require('mason').setup({})
+
+vim.g.rustaceanvim = {
+    server = {
+        capabilities = require('cmp_nvim_lsp').default_capabilities(),
+    },
+}
+
+local noop = function() end
+
+require('mason-lspconfig').setup({
+    ensure_installed = { 'lua_ls', 'ts_ls', 'tailwindcss', 'html' },
+    handlers = {
+        function(server_name)
+            require('lspconfig')[server_name].setup({})
+        end,
+        rust_analyzer = noop,
+    }
 })
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
-    ['<Up>'] = cmp.mapping.select_prev_item(cmp_select),
-    ['<Down>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<CR>'] = cmp.mapping.confirm({ select = false }),
-    ['<C-Space>'] = cmp.mapping.complete(),
-})
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-vim.lsp.diagnostic.on_publish_diagnostics,
-{
-    update_in_insert = true,
-    virtual_text = true
-}
+    vim.lsp.diagnostic.on_publish_diagnostics,
+    {
+        update_in_insert = true,
+        virtual_text = true
+    }
 )
 
 -- local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
@@ -32,7 +38,7 @@ end
 
 local root_pattern = require('lspconfig.util').root_pattern
 
-lsp.configure('tsserver', {
+lsp.configure('ts_ls', {
     on_attach = function(client)
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
@@ -73,8 +79,6 @@ lsp.configure('html', {
     }
 })
 
-lsp.configure('zls', {})
-
 lsp.configure('tailwindcss', {
     filetypes = {
         "css",
@@ -96,50 +100,24 @@ lsp.configure('tailwindcss', {
         },
     },
     root_dir = require 'lspconfig'.util.root_pattern('tailwind.config.js', 'tailwind.config.ts', 'postcss.config.js',
-    'postcss.config.ts', 'windi.config.ts'),
+        'postcss.config.ts', 'windi.config.ts'),
 })
 
-local null_ls = require('null-ls')
-
-local null_opts = lsp.build_options('null-ls', {
-    on_attach = function(client, bufnr)
-        if client.supports_method "textDocument/formatting" then
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                desc = "Auto format before save",
-                pattern = "<buffer>",
-                callback = function()
-                    vim.lsp.buf.format({
-                        bufnr = bufnr,
-                        filter = function(filter_client)
-                            return filter_client.name == "null-ls"
-                        end
-                    })
-                end,
-            })
-        end
-    end
-})
-
-null_ls.setup({
-    on_attach = null_opts.on_attach,
+cmp.setup({
     sources = {
-        null_ls.builtins.formatting.rustfmt,
-        null_ls.builtins.formatting.prettierd.with({
-            env = {
-                PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/.config/nvim/after/plugin/prettierd.json"),
-            },
-        })
-    }
-})
-
-lsp.set_preferences({
-    sign_icons = {}
-})
-lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
+        { name = 'nvim_lsp' },
+        { name = 'buffer' },
+    },
+    mapping = cmp.mapping.preset.insert({
+        ['<Up>'] = cmp.mapping.select_prev_item(cmp_select),
+        ['<Down>'] = cmp.mapping.select_next_item(cmp_select),
+        ['<CR>'] = cmp.mapping.confirm({ select = false }),
+        ['<C-Space>'] = cmp.mapping.complete(),
+    }),
 })
 
 lsp.setup()
+
 vim.keymap.set("n", "<leader>fm", function() vim.lsp.buf.format({ async = true }) end)
 vim.keymap.set("n", "<leader>hh", function() vim.lsp.inlay_hint(0) end)
 vim.keymap.set("n", "<leader>hv", function() vim.lsp.buf.hover() end)

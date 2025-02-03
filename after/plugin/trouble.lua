@@ -48,16 +48,10 @@ require("trouble").setup{
     }
 }
 
-vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle<cr>",
+vim.keymap.set("n", "<leader>xl", "<cmd>Trouble diagnostics<cr>",
   {silent = true, noremap = true}
 )
-vim.keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>",
-  {silent = true, noremap = true}
-)
-vim.keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",
-  {silent = true, noremap = true}
-)
-vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
+vim.keymap.set("n", "<leader>xq", "<cmd>Trouble quickfix<cr>",
   {silent = true, noremap = true}
 )
 
