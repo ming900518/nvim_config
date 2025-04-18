@@ -4,6 +4,15 @@ require('mason').setup({})
 vim.g.rustaceanvim = {
     server = {
         capabilities = require('cmp_nvim_lsp').default_capabilities(),
+        default_settings = {
+            ['rust-analyzer'] = {
+                diagnostics = {
+                    enable = true,
+                    disabled = { "unresolved-proc-macro", "macro-error" },
+                    enableExperimental = true,
+                }
+            },
+        }
     },
 }
 
@@ -25,7 +34,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
     {
         update_in_insert = true,
-        virtual_text = true
+        virtual_text = true,
     }
 )
 
@@ -70,7 +79,7 @@ lsp.configure('ts_ls', {
         }
     },
     root_dir = root_pattern("package.json", "./package.json"),
-    single_file_support = false
+    single_file_support = true
 })
 
 lsp.configure('html', {
@@ -93,6 +102,7 @@ lsp.configure('tailwindcss', {
         "svelte",
         "vue",
         "rust",
+        "astro"
     },
     init_options = {
         userLanguages = {
@@ -100,8 +110,10 @@ lsp.configure('tailwindcss', {
         },
     },
     root_dir = require 'lspconfig'.util.root_pattern('tailwind.config.js', 'tailwind.config.ts', 'postcss.config.js',
-        'postcss.config.ts', 'windi.config.ts'),
+        'postcss.config.ts', 'windi.config.ts', 'tailwindcss'),
 })
+
+vim.api.nvim_set_hl(0, "CmpBlack", { bg = "#000000" })
 
 cmp.setup({
     sources = {
@@ -113,7 +125,17 @@ cmp.setup({
         ['<Down>'] = cmp.mapping.select_next_item(cmp_select),
         ['<CR>'] = cmp.mapping.confirm({ select = false }),
         ['<C-Space>'] = cmp.mapping.complete(),
-    }),
+    }), 
+    window = {
+        completion = {
+            border = "rounded",
+            winhighlight = "Normal:CmpBlack",
+        },
+        documentation = {
+            border = "rounded",
+            winhighlight = "Normal:CmpBlack",
+        }
+    }
 })
 
 lsp.setup()

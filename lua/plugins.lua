@@ -31,7 +31,6 @@ return require('packer').startup(function(use)
             'nvim-tree/nvim-web-devicons',
         },
     }
-    use { 'feline-nvim/feline.nvim' }
     use {
         'saecki/crates.nvim',
         tag = 'v0.3.0',
@@ -40,7 +39,7 @@ return require('packer').startup(function(use)
             require('crates').setup()
         end,
     }
-    use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
+    use({ 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } })
     use { 'jose-elias-alvarez/null-ls.nvim' }
     use {
         'dinhhuy258/git.nvim',
@@ -50,4 +49,6 @@ return require('packer').startup(function(use)
     }
     use "sts10/vim-pink-moon"
     use 'mrcjkb/rustaceanvim'
+    use 'ziglang/zig.vim'
+    use 'MunifTanjim/nougat.nvim'
 end)

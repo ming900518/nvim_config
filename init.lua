@@ -7,6 +7,7 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.cmd('set clipboard+=unnamedplus')
 vim.cmd('set encoding=utf-8')
+vim.cmd('set winborder=rounded')
 vim.cmd('autocmd Colorscheme * highlight TelescopeNormal guibg=#1e1e1e guifg=#9da5b3')
 vim.cmd('autocmd Colorscheme * highlight TelescopeBorder guibg=#1e1e1e guifg=#9da5b3')
 vim.cmd('autocmd Colorscheme * highlight NoiceCmdlinePopup guibg=#1e1e1e guifg=#9da5b3')
@@ -28,5 +29,5 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.g.markdown_fenced_languages = {
-  "ts=typescript"
+    "ts=typescript"
 }
