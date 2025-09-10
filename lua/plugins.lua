@@ -39,7 +39,6 @@ return require('packer').startup(function(use)
             require('crates').setup()
         end,
     }
-    use({ 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } })
     use { 'jose-elias-alvarez/null-ls.nvim' }
     use {
         'dinhhuy258/git.nvim',

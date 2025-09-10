@@ -9,7 +9,6 @@ vim.g.rustaceanvim = {
                 diagnostics = {
                     enable = true,
                     disabled = { "unresolved-proc-macro", "macro-error" },
-                    enableExperimental = true,
                 }
             },
         }
@@ -35,6 +34,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     {
         update_in_insert = true,
         virtual_text = true,
+        underline = false
     }
 )
 
@@ -125,7 +125,7 @@ cmp.setup({
         ['<Down>'] = cmp.mapping.select_next_item(cmp_select),
         ['<CR>'] = cmp.mapping.confirm({ select = false }),
         ['<C-Space>'] = cmp.mapping.complete(),
-    }), 
+    }),
     window = {
         completion = {
             border = "rounded",
@@ -139,6 +139,13 @@ cmp.setup({
 })
 
 lsp.setup()
+
+vim.lsp.config("rustomorin-analyzer", {
+    cmd = { "/Users/chisakikirino/.cargo/bin/rustomorin-analyzer" },
+    root_markers = { "Cargo.toml" },
+    filetypes = { "rust" }
+});
+vim.lsp.enable('rustomorin-analyzer');
 
 vim.keymap.set("n", "<leader>fm", function() vim.lsp.buf.format({ async = true }) end)
 vim.keymap.set("n", "<leader>hh", function() vim.lsp.inlay_hint(0) end)
