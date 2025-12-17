@@ -1,30 +1,22 @@
 vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
-    use 'wbthomason/packer.nvim'
+    use('wbthomason/packer.nvim')
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
-    use('nvim-treesitter/playground')
     use('mbbill/undotree')
-    use {
-        'VonHeikemen/lsp-zero.nvim',
-        requires = {
-            { 'neovim/nvim-lspconfig' },
-            { 'williamboman/mason.nvim' },
-            { 'williamboman/mason-lspconfig.nvim' },
-            { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-buffer' },
-            { 'hrsh7th/cmp-path' },
-            { 'saadparwaiz1/cmp_luasnip' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/cmp-nvim-lua' },
-            { 'L3MON4D3/LuaSnip' },
-        }
-    }
+    use('neovim/nvim-lspconfig')
+    use('hrsh7th/nvim-cmp')
+    use('hrsh7th/cmp-buffer')
+    use('hrsh7th/cmp-path')
+    use('saadparwaiz1/cmp_luasnip')
+    use('hrsh7th/cmp-nvim-lsp')
+    use('hrsh7th/cmp-nvim-lua')
+    use('L3MON4D3/LuaSnip')
     use {
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons"
     }
-    use { "williamboman/mason.nvim" }
-    use { "xiyaowong/transparent.nvim" }
+    use("williamboman/mason.nvim")
+    use("xiyaowong/transparent.nvim")
     use {
         'nvim-tree/nvim-tree.lua',
         requires = {
@@ -39,15 +31,14 @@ return require('packer').startup(function(use)
             require('crates').setup()
         end,
     }
-    use { 'jose-elias-alvarez/null-ls.nvim' }
+    use('jose-elias-alvarez/null-ls.nvim')
     use {
         'dinhhuy258/git.nvim',
         config = function()
             require('git').setup()
         end
     }
-    use "sts10/vim-pink-moon"
-    use 'mrcjkb/rustaceanvim'
-    use 'ziglang/zig.vim'
-    use 'MunifTanjim/nougat.nvim'
+    use("sts10/vim-pink-moon")
+    use('mrcjkb/rustaceanvim')
+    use('MunifTanjim/nougat.nvim')
 end)

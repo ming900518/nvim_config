@@ -1,4 +1,3 @@
-local lsp = require('lsp-zero')
 require('mason').setup({})
 
 vim.g.rustaceanvim = {
@@ -15,39 +14,20 @@ vim.g.rustaceanvim = {
     },
 }
 
-local noop = function() end
-
-require('mason-lspconfig').setup({
-    ensure_installed = { 'lua_ls', 'ts_ls', 'tailwindcss', 'html' },
-    handlers = {
-        function(server_name)
-            require('lspconfig')[server_name].setup({})
-        end,
-        rust_analyzer = noop,
-    }
+vim.diagnostic.config({
+    update_in_insert = true,
+    virtual_text = true,
+    underline = false,
+    signs = true,
 })
-local cmp = require('cmp')
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    {
-        update_in_insert = true,
-        virtual_text = true,
-        underline = false
-    }
-)
-
--- local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
-local root_pattern = require('lspconfig.util').root_pattern
-
-lsp.configure('ts_ls', {
+vim.lsp.config['ts_ls'] = {
     on_attach = function(client)
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
@@ -78,17 +58,21 @@ lsp.configure('ts_ls', {
             }
         }
     },
-    root_dir = root_pattern("package.json", "./package.json"),
+    root_markers = { "package.json", "./package.json" },
     single_file_support = true
-})
+}
 
-lsp.configure('html', {
+vim.lsp.enable('ts_ls')
+
+vim.lsp.config['html'] = {
     filetypes = {
         "html",
     }
-})
+}
 
-lsp.configure('tailwindcss', {
+vim.lsp.enable('html')
+
+vim.lsp.config['tailwindcss'] = {
     filetypes = {
         "css",
         "scss",
@@ -109,11 +93,16 @@ lsp.configure('tailwindcss', {
             rust = "html",
         },
     },
-    root_dir = require 'lspconfig'.util.root_pattern('tailwind.config.js', 'tailwind.config.ts', 'postcss.config.js',
-        'postcss.config.ts', 'windi.config.ts', 'tailwindcss'),
-})
+    root_markers = { 'tailwind.config.js', 'tailwind.config.ts', 'postcss.config.js',
+        'postcss.config.ts', 'windi.config.ts', 'tailwindcss' },
+}
+
+vim.lsp.enable('tailwindcss')
 
 vim.api.nvim_set_hl(0, "CmpBlack", { bg = "#000000" })
+
+local cmp = require('cmp')
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 cmp.setup({
     sources = {
@@ -138,10 +127,8 @@ cmp.setup({
     }
 })
 
-lsp.setup()
-
 vim.lsp.config("rustomorin-analyzer", {
-    cmd = { "/Users/chisakikirino/.cargo/bin/rustomorin-analyzer" },
+    cmd = { "/home/chisakikirino/.cargo/bin/rustomorin-analyzer" },
     root_markers = { "Cargo.toml" },
     filetypes = { "rust" }
 });
