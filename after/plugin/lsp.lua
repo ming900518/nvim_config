@@ -16,9 +16,11 @@ vim.g.rustaceanvim = {
 
 vim.diagnostic.config({
     update_in_insert = true,
-    virtual_text = true,
+    virtual_text = { severity = { vim.diagnostic.severity.WARN, vim.diagnostic.severity.INFO, vim.diagnostic.severity.HINT } },
+    virtual_lines = { severity = { vim.diagnostic.severity.ERROR } },
     underline = false,
     signs = true,
+    severity_sort = true,
 })
 
 local signs = { Error = "", Warn = "", Hint = "", Info = "" }
