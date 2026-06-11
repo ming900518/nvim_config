@@ -19,6 +19,7 @@ vim.cmd('autocmd Colorscheme * highlight LineNr guifg=#fcd3db')
 vim.cmd('autocmd Colorscheme * highlight WinBar guibg=NONE')
 vim.cmd('autocmd Colorscheme * highlight WinBarNC guibg=NONE')
 vim.cmd('autocmd Colorscheme * highlight LspInlayHint guifg=#bc9ea4 gui=italic')
+vim.cmd('ca w!! w !sudo -S tee "%"')
 vim.opt.termguicolors = true
 -- vim.cmd.colorscheme 'sonokai'
 vim.cmd.colorscheme 'pink-moon'
