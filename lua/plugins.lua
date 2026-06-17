@@ -14,8 +14,6 @@ return require('pckr').add{
     'kyazdani42/nvim-web-devicons';
     'williamboman/mason.nvim';
     'xiyaowong/transparent.nvim';
-    'nvim-tree/nvim-tree.lua';
-    'nvim-tree/nvim-web-devicons';
     {
         'saecki/crates.nvim',
         tag = 'v0.3.0',
@@ -33,4 +31,5 @@ return require('pckr').add{
     'sts10/vim-pink-moon';
     'mrcjkb/rustaceanvim';
     'MunifTanjim/nougat.nvim';
+    'mikavilpas/yazi.nvim';
 }

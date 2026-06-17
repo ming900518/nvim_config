@@ -19,7 +19,6 @@ bootstrap_pckr()
 require('plugins')
 require('set')
 vim.g.mapleader = ' '
--- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -42,11 +41,18 @@ vim.opt.termguicolors = true
 -- vim.cmd.colorscheme 'sonokai'
 vim.cmd.colorscheme 'pink-moon'
 
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "*" },
-    command = [[:NvimTreeClose]]
-})
-
 vim.g.markdown_fenced_languages = {
     "ts=typescript"
 }
+
+vim.api.nvim_create_autocmd("UIEnter", {
+  callback = function()
+    require("yazi").setup({
+      open_for_directories = true,
+    })
+  end,
+})
+vim.keymap.set("n", "<leader>fe", function()
+  require("yazi").yazi()
+end)
+
