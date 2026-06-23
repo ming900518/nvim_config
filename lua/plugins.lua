@@ -1,23 +1,5 @@
 return require("pckr").add {
-    {
-        "nvim-treesitter/nvim-treesitter",
-        run = ":TSUpdate",
-        config = function()
-            require("nvim-treesitter").install {
-                "vim",
-                "vimdoc",
-                "lua",
-                "markdown",
-                "javascript",
-                "typescript",
-                "java",
-                "html",
-                "rust"
-            }
-        end
-    },
     "mbbill/undotree",
-    "neovim/nvim-lspconfig",
     {
         "hrsh7th/nvim-cmp",
         config = function()
